@@ -1,0 +1,148 @@
+<h1>{{title}}</h1>
+<p>test works!</p>
+
+<!-- interpolation -->
+<h1>Interpolation</h1>
+<h2>{{2 + 2}}</h2>
+<h2>{{title.toUpperCase()}}</h2>
+<h2>Hello {{subTitle }} {{greet()}}</h2>
+<h2>{{siteUrl}} Running successfully !</h2>
+
+<!-- Property Binding  -->
+ <h1>Property Binding</h1>
+ <input [id]="id" type="text" value="Vishwas" /> <br/><br/>
+ <input id="{{id + 0 }}" type="text" value="Vishwas" [disabled]="isDisabled" />
+
+ <!-- Class Binding  -->
+  <h1 class= "text-success">{{classBindingTitle}}</h1>
+  <h1 [class]="successClass">{{classBindingTitle}} 1 </h1>
+  <h1 class="special-text" [class]="successClass">{{classBindingTitle}} 2</h1>
+  <h1 [class.text-danger]="hasError">{{classBindingTitle}} 3</h1>
+  <h1 [ngClass]="messageClasses">{{classBindingTitle}} 4</h1>
+
+  <!-- Style Binding -->
+  <h1>{{styleBindingTitle}}</h1> 
+  <h2 [style.color]="'orange'">{{styleBindingTitle}} 1</h2>
+  <h2 [style.color]="hasError ? 'red' : 'green'">{{styleBindingTitle}} 2</h2>
+  <h2 [style.color]="highlightColor">{{styleBindingTitle}} 3</h2>
+  <h2 [ngStyle]="titlestyles">{{styleBindingTitle}} 4</h2>
+
+<!-- Event Binding -->
+<h1>{{eventBindingTitle}}</h1>
+<button (click)="onClick($event)">Greet</button><br/>
+<h2>{{greetings}}</h2><br/>
+<button (click)="greetingDirect = 'Welcome Angular'">Greet Direct</button><br/>
+<h2>{{greetingDirect}}</h2>
+
+<!-- Template Reference Variable -->
+<h1>{{templateReferenceVariableTitle}}</h1>
+<input #myInput type="text" /> <br /> <br />
+<button (click)="logMessage(myInput.value)">Log</button>
+
+
+<!-- Two way data binding -->
+ <h1>{{ twoBindingTitle}}</h1>
+ <input [(ngModel)]="name" placeholder="Enter name"/>
+ <p>Name: {{name}}</p>
+
+
+ <!-- Structural Directive -->
+
+<h1>*ngIf Directive</h1>
+<h2>Method 1</h2>
+
+<h3 *ngIf="displayName; else elseBlock">Codeevloution</h3>
+<ng-template #elseBlock>
+  <h3>Name is hidden</h3>
+</ng-template>
+
+<h2>Method 2</h2>
+
+<div *ngIf="displayTitle; then thenBlock; else elseBlock"></div>
+
+<ng-template #thenBlock>
+  <h3>Codevolution</h3>
+</ng-template>
+
+<ng-template #elseBlock>
+  <h3>hidden</h3>
+</ng-template>
+
+<h1>ngSwitch Directive</h1>
+<div [ngSwitch]="color">
+  <p *ngSwitchCase="'red'">You picked red color</p>
+  <p *ngSwitchCase="'blue'">You picked blue color</p>
+  <p *ngSwitchCase="'green'">You picked green color</p>
+  <p *ngSwitchDefault>Pick again</p>
+</div>
+
+<h1>ngFor Directive</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Color</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Odd</th>
+      <th>Even</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let color of colors; index as i; first as f; last as l; odd as o; even as e">
+      <td>{{i}}</td>
+      <td>{{color}}</td>
+      <td>{{f}}</td>
+      <td>{{l}}</td>
+      <td>{{o}}</td>
+      <td>{{e}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- parentData from App component to test component -->
+ <h1>parentData from App component to test component</h1>
+ <!-- <h2>Parent Data: Hello {{ parentData }}</h2> Refer @Input() line 72 and 73 -->
+ <h2>Parent Data with alias as appName: Hello {{ appName }}</h2>
+
+ <!-- Pass Hey Codevolution message from child event to app component-->
+  <h1>Pass Hey Codevolution message by child event of test component to app component</h1>
+  <button (click)="fireEvent()">Send Event</button>
+
+  <!-- Pipes -->
+  <h1>Pipes for String property type</h1>
+  <h2>{{ namePipe }}</h2>
+  <h2>Lowercase: {{ namePipe | lowercase }}</h2>
+  <h2>Uppercase: {{ namePipe | uppercase }}</h2>
+  <h2>Titlecase: {{ messagePipe | titlecase }}</h2>
+  <h2>Slice: {{ namePipe | slice: 3: 5 }}</h2>
+  <h2>Json: {{ person | json }}</h2>
+
+  <h1>Pipes for Number property type</h1>
+  <h2>{{ 5.678 | number: '1.2-3' }}</h2>
+  <h2>{{ 5.678 | number: '3.4-5' }}</h2>
+  <h2>{{ 5.678 | number: '3.1-2' }}</h2>
+
+  <h1>Percentage Pipe</h1>
+  <h2>{{ 0.25 | percent }}</h2>
+
+  <h1>Currency Pipe</h1>
+  <h2>{{ 0.25 | currency }}</h2>
+  <h2>{{ 0.25 | currency: 'GBP' }}</h2> <!-- Great britian Pound -->
+  <h2>{{ 0.25 |  currency: 'GBP': 'code'}}</h2>
+  <h2>{{ 0.25 |  currency: 'EUR': 'code'}}</h2>
+
+  <h1>Date Pipe</h1>
+  <h2>Date without pipe: {{ date }}</h2>
+  <h2>Date with short pipe: {{ date | date: 'short' }}</h2>
+  <h2>Date with shortDate pipe: {{ date | date: 'shortDate' }}</h2>
+  <h2>Date with shortTime pipe: {{ date | date: 'shortTime' }}</h2>
+
+  <h2>Date with medium pipe: {{ date | date: 'medium' }}</h2>
+  <h2>Date with mediumDate pipe: {{ date | date: 'mediumDate' }}</h2>
+  <h2>Date with mediumTime pipe: {{ date | date: 'mediumTime' }}</h2>
+
+  <h2>Date with long pipe: {{ date | date: 'long' }}</h2>
+  <h2>Date with longDate pipe: {{ date | date: 'longDate' }}</h2>
+  <h2>Date with longTime pipe: {{ date | date: 'longTime' }}</h2>
+
